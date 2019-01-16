@@ -3,6 +3,10 @@
     height:750px !important;
 }
 
+.smallBuzz{
+    margin-top: 28px !important;
+    margin-left: 90px !important;
+}
 
 .maintexto{
     display: flex;
