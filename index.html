@@ -93,7 +93,7 @@
 						<li>
 							<p class="fragment">
 								Está construido sobre Apache Lucene
-								<small>( Lucene es el motor de busqueda full text mas popular del mercado)</small>
+								<small>( fue el primer motor de busqueda full text mas popular del mercado)</small>
 							</p>
 						</li>
 						<li>
@@ -131,7 +131,7 @@
 							</p>
 
 						</ul>
-						<img src="images/easyToScale.jpg" width="400" height="200">
+						<img src="images/easyToScale.png" width="400" height="200">
 					</div>
 
 				</section>
@@ -144,23 +144,22 @@
 							<br>
 							<br>
 							Las respuesta siempre son en formato JSON, pueden ser leidas por cualquier lenguajes de programacion y por
-							cualquier persona :)
+							cualquier persona
 						</ul>
-						<img src="images/easyToScale.jpg" width="400" height="200">
 					</div>
 
 				</section>
 				<section>
 					<div>
-						<h4>Ultra manejable Query DSL</h4>
+						<h4>Ultra manejable lenguaje de consultas</h4>
 
 						<ul>
+							Domain Specified Language (DSL) <br><br>
 							Su API REST ofrece un complejo pero versatil lenguaje para hacer consultas y facetados, es muy intuitivo y facil
 							de usar.
 							<br><br>
 							Cada consulta es simplemente un objecto JSON y puede contener cualquier tipo de consulta o varias de ellas
 						</ul>
-						<img src="images/easyToScale.jpg" width="400" height="200">
 					</div>
 
 				</section>
@@ -203,7 +202,7 @@
 					<div>
 						<h4>Comunidad activa</h4>
 						<ul>
-							Elastic tiene un blog, un foro de consultas y  sino <br> la solucion surgirá en algun lugar luego googlear
+							Elastic tiene un blog, un foro de consultas y sino <br> la solucion surgirá en algun lugar luego googlear
 						</ul>
 					</div>
 				</section>
@@ -224,7 +223,7 @@
 							<p>Full Text Search</>
 						</li>
 						<li>
-							<p class="fragment">Suggester and did you mean???</p>
+							<p class="fragment">Suggester and did you mean</p>
 						</li>
 						<li>
 							<p class="fragment">Graph query (Cross selling)</p>
@@ -302,7 +301,8 @@
 
 				<div class="horizontal-container">
 					<p class="vertical-top-item">Nodo: </p>
-					<p class="content text-left"> Un nodo es una instancia de Elastic que forma parte de un cluster, almacena tu información y ayuda
+					<p class="content text-left"> Un nodo es una instancia de Elastic que forma parte de un cluster, almacena tu
+						información y ayuda
 						con las tareas de indexación y búsqueda del cluster. <br> Los nodos están identificados por un nombre también.
 						<br>
 						Puede haber tantos nodos como quieras por cada Cluster, en caso de que no haya ningún Cluster configurado en el
@@ -320,269 +320,293 @@
 						indice en si no almacena los documentos, Cada índice está compuesto por uno o más shards.</p>
 				</div>
 
-				<div class="fragment horizontal-container">
-					<p class="vertical-top-item">Sharding y Replicas: </p>
-					<p class="content text-left">Cada shard es una instancia de un índice de Lucene, que podría imaginarse como un
-						motor de búsqueda en sí mismo, que indexa y administra consultas para un subconjunto de datos en un cluster de
-						Elasticsearch.</p>
+				
+				<img src="images/indexOneReplica.png" alt="">
+
+		</section>
+
+		<section>
+			<h2>Arquitectura</h2>
+
+
+
+			<div class=" horizontal-container">
+				<p class="vertical-top-item">Sharding y Replicas: </p>
+				<p class="content text-left">Cada shard es una instancia de un índice de Lucene, que podría imaginarse como un
+					motor de búsqueda en sí mismo, que indexa y administra consultas para un subconjunto de datos en un cluster de
+					Elasticsearch. <br><br>
+					Cada replica es un copia exacta de un indice y los shards replicas no pueden habitar en el mismo nodo de su shard originador
+				 </p>
+			</div>
+		</section>
+
+		
+		<section>
+			<h2>Arquitectura</h2>
+			<h4>shards and replicas</h4>
+
+			<img src="images/replicas2.jpg" alt="">
+		</section>
+
+		<section>
+			<h2>Hasta a K Alguna pregunta ???</h2>
+			<small>vamos a pasar a la creacion de un indice</small>
+		</section>
+
+		<section data-transition="convex">
+			<h2>Configuracion de un indice</h2>
+			<ul>
+				<li>
+					<p>Shards</p>
+				</li>
+				<li>
+					<p class="fragment">Replicas</p>
+
+				</li>
+				<li>
+					<p class="fragment">Analysis</p>
+				</li>
+				<li>
+					<p class="fragment">Mapping</p>
+				</li>
+			</ul>
+		</section>
+
+		<section>
+			<h2>Analysis</h2>
+			<ul>
+				<li>Analysis es el proceso de conversión de texto, como el cuerpo de cualquier correo electrónico, en tokens o
+					términos que se agregan a el índice invertido para la búsqueda. </li>
+				<li class="fragment">Es un proceso que puede hacerse en tiempo de indexacion o de busqueda, para todos o algunos
+					campos del documento</li>
+				<li class="fragment">Elastic tiene un amplio repertorio de analizers que se adaptan a distintos contextos o
+					lenguajes</li>
+				<li class="fragment">Tambien se puede definir analizers custom o hacer una mezpla entre ellos</li>
+			</ul>
+
+		</section>
+
+		<section data-transition="convex">
+			<h2>Anatomia de un analizer</h2>
+
+			<img src="images/analizerAnatomy.png" alt="">
+		</section>
+
+		<section>
+			<h2>Anatomia de un analizer</h2>
+			<ul>
+				<li>
+					<h4>Character filter:</h4>
+					<p>
+						Un Character filter recibe el texto original como una secuencia de caracteres y puede transformar la secuencia
+						agregando, eliminando o cambiando caracteres. Por ejemplo, un filtro de caracteres se podría usar para convertir
+						números árabe-hindúes (٠ ١٢٣٤٥٦٧٨ ٩) en sus equivalentes árabe-latinos (0123456789), o para eliminar elementos
+						HTML como de la secuencia..
+					</p>
+				</li>
+				<li>
+					<p class="fragment">No es necesario</p>
+				</li>
+			</ul>
+		</section>
+
+		<section>
+			<h2>Anatomia de un analizer</h2>
+			<ul>
+				<li>
+					<h4>Tokenizer:</h4>
+					<p>Un tokenizer recibe un flujo de caracteres, lo divide en tokens individuales, generalmente palabras
+						individuales</p>
+				</li>
+
+				<li>
+					<p class="fragment">debe haber al menos un tokenizer</p>
+				</li>
+
+			</ul>
+		</section>
+
+		<section>
+			<section>
+				<h2>Anatomia de un analizer</h2>
+				<ul>
+					<li>
+						<h4>Token filter:</h4>
+						<p>Acepta los tokens devueltos por el tokenizer y aplica determinada transformaciones sobre cada uno <br><br>
+							Por ej: pasar todo a minuscula, hallar la raiz de las palabras (Stemming) o remover las stopwords entre otras
+							muchas opciones</p>
+					</li>
+
+					<li>
+						<p class="fragment">No necesariamente se debe agregar un token filter</p>
+					</li>
+
+				</ul>
+			</section>
+
+			<section>
+				<h2>Analyzer in action</h2>
+				<div class="horizontal-container">
+					<img src="images/stopwords.png" alt="">
+					<img width="400" height="200" class="secondImage" src="images/stemming.png" alt="">
 				</div>
 			</section>
+		</section>
 
+
+		<section>
 			<section>
-				<h2>Arquitectura</h2>
-				<h4>shards and replicas</h4>
-
-				<img src="images/replicas2.jpg" alt="">
-			</section>
-
-			<section>
-				<h2>Hasta a K Alguna pregunta ???</h2>
-				<small>vamos a pasar a la creacion de un indice</small>
-			</section>
-
-			<section data-transition="convex">
-				<h2>Configuracion de un indice</h2>
-				<ul>
-					<li>
-						<p>Shards</p>
-					</li>
-					<li>
-						<p class="fragment">Replicas</p>
-
-					</li>
-					<li>
-						<p class="fragment">Analysis</p>
-					</li>
-					<li>
-						<p class="fragment">Mapping</p>
-					</li>
-				</ul>
-			</section>
-
-			<section>
-				<h2>Analysis</h2>
-				<ul>
-					<li>Analysis es el proceso de conversión de texto, como el cuerpo de cualquier correo electrónico, en tokens o
-						términos que se agregan a el índice invertido para la búsqueda. </li>
-					<li class="fragment">Es un proceso que puede hacerse en tiempo de indexacion o de busqueda, para todos o algunos
-						campos del documento</li>
-					<li class="fragment">Elastic tiene un amplio repertorio de analizers que se adaptan a distintos contextos o
-						lenguajes</li>
-					<li class="fragment">Tambien se puede definir analizers custom o hacer una mezpla entre ellos</li>
-				</ul>
-
-			</section>
-
-			<section  data-transition="convex"> 
-				<h2>Anatomia de un analizer</h2>
-
-				<img src="images/analizerAnatomy.png" alt="">
-			</section>
-
-			<section>
-				<h2>Anatomia de un analizer</h2>
-				<ul>
-					<li>
-						<h4>Character filter:</h4>
-						<p>
-							Un Character filter recibe el texto original como una secuencia de caracteres y puede transformar la secuencia
-							agregando, eliminando o cambiando caracteres. Por ejemplo, un filtro de caracteres se podría usar para convertir
-							números árabe-hindúes (٠ ١٢٣٤٥٦٧٨ ٩) en sus equivalentes árabe-latinos (0123456789), o para eliminar elementos
-							HTML como de la secuencia..
-						</p>
-					</li>
-					<li>
-						<p class="fragment">No es necesario</p>
-					</li>
-				</ul>
-			</section>
-
-			<section>
-				<h2>Anatomia de un analizer</h2>
-				<ul>
-					<li>
-						<h4>Tokenizer:</h4>
-						<p>Un tokenizer recibe un flujo de caracteres, lo divide en tokens individuales (generalmente palabras
-							individuales</p>
-					</li>
-
-					<li>
-						<p class="fragment">debe haber al menos un tokenizer</p>
-					</li>
-
-				</ul>
-			</section>
-
-			<section>
-				<section>
-					<h2>Analyzer in action</h2>
-
-					<div class="horizontal-container">
-						<img src="images/spanishAnalizers.png" alt="">
-
-						<div class="vertical-container testinganalizres">
-							<img src="images/testing analizres.png" alt="">
-							<img src="images/tokens.png" alt="">
-						</div>
-
-					</div>
-
-				</section>
-				<section>
-					<h2>Analyzer in action</h2>
-					<div class="horizontal-container">
-						<img src="images/stopwords.png" alt="">
-						<img width="400" height="200" class="secondImage" src="images/stemming.png" alt="">
-					</div>
-				</section>
-			</section>
-
-			<section>
-				<h2>Autocomplete Tokenizer</h2>
+				<h2>Analyzer in action</h2>
 
 				<div class="horizontal-container">
-					<img src="images/ngrantokenizerMapping.jpg" alt="">
+					<img src="images/spanishAnalizers.png" alt="">
 
 					<div class="vertical-container testinganalizres">
-						<img src="images/ngramTokenizerUse.jpg" alt="">
-						<img src="images/ngramTokenizerResult.jpg" alt="">
+						<img src="images/testing analizres.png" alt="">
+						<img src="images/tokens.png" alt="">
 					</div>
 
 				</div>
-			</section>
 
+			</section>
+		</section>
+
+
+		<section>
+			<h2>Autocomplete Tokenizer</h2>
+
+			<div class="horizontal-container">
+				<img src="images/ngrantokenizerMapping.jpg" alt="">
+
+				<div class="vertical-container testinganalizres">
+					<img src="images/ngramTokenizerUse.jpg" alt="">
+					<img src="images/ngramTokenizerResult.jpg" alt="">
+				</div>
+
+			</div>
+		</section>
+
+		<section>
+			<h2>Mapping</h2>
+			<p>El mapeo es el proceso de definir cómo un documento, y los campos que contiene, se almacenan e indexan </p>
+			<p class="fragment">Por ejemplo:</p>
+			<ul>
+				<li class="fragment">que campos deberían ser tratado como full text searcheables (string)</li>
+				<li class="fragment">que campos contienen numeros, fechas, booleans</li>
+				<li class="fragment">definir tipos de datos especiales para tratar datos como geolocalizacion, direcciones ip,
+					percolators</li>
+				<li class="fragment">definir si es un campo debe ser indexado o no procesado</li>
+			</ul>
+		</section>
+
+		<section>
 			<section>
 				<h2>Mapping</h2>
-				<p>El mapeo es el proceso de definir cómo un documento, y los campos que contiene, se almacenan e indexan </p>
-				<p class="fragment">Por ejemplo:</p>
 				<ul>
-					<li class="fragment">que campos deberían ser tratado como full text searcheables (string)</li>
-					<li class="fragment">que campos contienen numeros, fechas, booleans</li>
-					<li class="fragment">definir tipos de datos especiales para tratar datos como geolocalizacion, direcciones ip,
-						percolators</li>
-					<li class="fragment">definir si es un campo debe ser indexado o no procesado</li>
+					<li class="fragment">reglas para mapping dinamico</li>
+					<li class="fragment">definir analyzers especificos para determinados campos</li>
+					<li class="fragment">el tipo de dato de un campo no puede ser modificado luego de ser creado, sino hay que
+						reindexar</li>
 				</ul>
 			</section>
-
 			<section>
-				<section>
-					<h2>Mapping</h2>
-					<ul>
-						<li class="fragment">reglas para mapping dinamico</li>
-						<li class="fragment">definir analyzers especificos para determinados campos</li>
-						<li class="fragment">el tipo de dato de un campo no puede ser modificado luego de ser creado, sino hay que
-							reindexar</li>
-					</ul>
-				</section>
-				<section>
-					<h2>Ejemplo de mapping</h2>
-					<img src="images/ejemploMappingMio.jpg" alt="">
-				</section>
-
+				<h2>Ejemplo de mapping</h2>
+				<img src="images/ejemploMappingMio.jpg" alt="">
 			</section>
 
-			<section>
-				<h2>Querys</h2>
-			</section>
+		</section>
 
-			<section>
-				<h2>Querys</h2>
-				<ul>
-					<li>
-						<h3>Full Text Queries</h3>
-					</li>
-					<li>
-						<p class="fragment">match query</p>
-					</li>
-					<li>
-						<p class="fragment">match_phrase query</p>
-					</li>
-					<li>
-						<p class="fragment">multi_match query</p>
-					</li>
-					<li>
-						<p class="fragment">query_string query</p>
-					</li>
-				</ul>
-			</section>
+		<section>
+			<h2>Querys</h2>
+		</section>
 
-			<section>
-				<h2>Querys</h2>
-				<ul>
-					<li>
-						<h3>Term Queries</h3>
-					</li>
-					<li>
-						<h3>Range Queries</h3>
-					</li>
-				</ul>
-			</section>
+		<section>
+			<h2>Querys</h2>
+			<ul>
+				<li>
+					<h3>Full Text Queries</h3>
+				</li>
+				<li>
+					<p class="fragment">match query</p>
+				</li>
+				<li>
+					<p class="fragment">match_phrase query</p>
+				</li>
+				<li>
+					<p class="fragment">multi_match query</p>
+				</li>
+				<li>
+					<p class="fragment">query_string query</p>
+				</li>
+			</ul>
+		</section>
 
-			<section>
-				<h2>Querys Compuestas</h2>
-				<ul>
-					<li>
-						<p>contant_score query</p>
-					</li>
-					<li>
-						<p class="fragment">bool query</p>
-					</li>
-					<li>
-						<p class="fragment">dis_max query</p>
-					</li>
-					<li>
-						<p class="fragment">function_score query</p>
-					</li>
-				</ul>
-			</section>
+		<section>
+			<h2>Querys</h2>
+			<ul>
+				<li>
+					<h3>Term Queries</h3>
+				</li>
+				<li>
+					<h3>Range Queries</h3>
+				</li>
+			</ul>
+		</section>
 
-			<section>
-				<h3>Querys Flasheras</h3>
-				<ul>
-					<li>
-						<p>Joinning query</p>
-					</li>
-					<li>
-						<p class="fragment">geo query</p>
-					</li>
-					<li>
-						<p class="fragment">specialiez query</p>
-					</li>
-					<li>
-						<p class="fragment">span query</p>
-					</li>
-				</ul>
-			</section>
+		<section>
+			<h2>Querys Compuestas</h2>
+			<ul>
+				<li>
+					<p>contant_score query</p>
+				</li>
+				<li>
+					<p class="fragment">bool query</p>
+				</li>
+				<li>
+					<p class="fragment">dis_max query</p>
+				</li>
+				<li>
+					<p class="fragment">function_score query</p>
+				</li>
+				<li>
+					<p class="fragment">geo query</p>
+				</li>
+				<li>
+					<p class="fragment">Joinning query</p>
+				</li>
 
-			<section>
-				<h3>Facetado</h3>
-				<ul class="text-center">
-					En vez de retornar los documentos matcheados... <br>
-					Se puede devolver informacion sobre la distribucion de los mismos <br><br>
-					Totales <br>
-					Promedios <br>
-					Distribuciones
-				</ul>
-			</section>
+			</ul>
+		</section>
 
-			<section>
-				<h2>Facetado</h2>
+		<section>
+			<h3>Facetado</h3>
+			<ul class="text-center">
+				En vez de retornar los documentos matcheados... <br>
+				Se puede devolver informacion sobre la distribucion de los mismos <br><br>
+				Totales <br>
+				Promedios <br>
+				Distribuciones
+			</ul>
+		</section>
 
-				<ul>
-					<li>Max, min , count, avg, top hits</li>
-					<br>
-					 <li class="fragment">HISTOGRAMAS (Intervalos) </li>
-					 <br>
-					<li class="fragment">Geo Bounds, Geo centroid, Geo distance, Ip range</li>
-				</ul>
+		<section>
+			<h2>Facetado</h2>
 
-			</section>
+			<ul>
+				<li>Max, min , count, avg, top hits</li>
+				<br>
+				<li class="fragment">HISTOGRAMAS (Intervalos) </li>
+				<br>
+				<li class="fragment">Geo Bounds, Geo centroid, Geo distance, Ip range</li>
+			</ul>
+
+		</section>
 
 
-			<section>
-				<h2>Vamos a la demo</h2>
-			</section>
-		</div>
+		<section>
+			<h2>Vamos a la demo</h2>
+		</section>
+	</div>
 
 	</div>
 
