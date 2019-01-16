@@ -1,0 +1,65 @@
+-------------------------------------
+ALIAS
+
+GET shakespeareAlias/doc/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+GET _cat/indices
+
+DELETE /shakespeare
+
+POST _reindex
+{
+  "source": {
+    "index": "shakespeare"
+  },
+  "dest": {
+    "index": "new_shakespeare"
+  }
+}
+
+PUT /new_shakespeare
+{
+ "mappings": {
+  "doc": {
+   "properties": {
+    "speaker": {"type": "keyword"},
+    "play_name": {"type": "text"},
+    "line_id": {"type": "integer"},
+    "speech_number": {"type": "integer"}
+   }
+  }
+ }
+}
+
+POST /_aliases
+{
+    "actions" : [
+        { "add" : { "index" : "shakespeare", "alias" : "shakespeareAlias" } },
+        { "add" : { "index" : "new_shakespeare", "alias" : "shakespeareAlias" } }
+    ]
+}
+
+------------------------------------------
+GEO CENTROID
+https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-geocentroid-aggregation.html
+
+GEO BOUNDS
+https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-geobounds-aggregation.html
+
+TOP HITS
+https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-top-hits-aggregation.html
+
+
+
+
+/*AYUDA*/
+PORQUE ES FACIL DE ESCALAR
+
+One server can hold one or more parts of one or more indexes, and whenever new nodes are introduced to the cluster they are just
+being added to the party. Every such index, or part of it, is called a shard, and ElasticSearch shards can be moved around the cluster
+very easily.

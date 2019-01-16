@@ -43,14 +43,15 @@
 		<!-- Any section element inside of this container is displayed as a slide -->
 		<div class="slides">
 			<section>
-				<p id="introduccion">
-					Introducción a Elasticsearch
-				</p>
-				<p>
-					<img width="178" height="238" data-src="/images/Elasticsearch.svg">
-					<h4>y mas alla</h4>
-					<img width="50" height="50" data-src="/images/astronauta.jpg">
-				</p>
+				<div class="maintexto">
+					<img width="400" height="400" data-src="/images/Elasticsearch.png">
+
+					<p id="introduccion">
+						Introducción a Elasticsearch
+						<small>( y un poquito mas alla ) </small>
+						<span><img src="images/astronauta.jpg" width="60" height="60" alt=""></span>
+					</p>
+				</div>
 			</section>
 
 			<section>
@@ -59,18 +60,17 @@
 					<li>
 						<p>Vision general</p>
 						<ul>
-							<li>caracteristicas</li>
-							<li>Analisis de la parte fisica</li>
-							<li>Analisis de la parte logica</li>
+							<li>Que, Por que y para que ???</li>
+							<li>Analisis de arquitectura</li>
+							<li>Analisis del procesamiento de los datos</li>
 						</ul>
 					</li>
 					<li>
 						<p>Demo </p>
 						<ul>
-							<li>Pequeño ejemplo indexacion</li>
-							<li>Diseño y armado de un indice comun</li>
+							<li>Diseño y carga de un indice</li>
+							<li>Queries compuestas y facetado</li>
 							<li>Diseño y armado de un indice suggester</li>
-							<li>APIs for Index/Search</li>
 						</ul>
 					</li>
 				</ul>
@@ -78,58 +78,58 @@
 
 			<!-- Example of nested vertical slides -->
 			<section>
-				<p>Que es Elasticsearch ??? </p>
-				<img src="images/Homero-pensando.jpgw500.jpg" width="300" height="400">
-			</section>
-
-			<section id="fragments">
-				<p>Que es Elasticsearch ??? </p>
-				<ul>
-					<li>
-						<p class="fragment">is a highly scalable open-source full-text search and analytics engine.</p>
-					</li>
-					<li>
-						<p class="fragment"> Build on top of Apache Lucene <small>(Lucene is a most popular java-based full text search
-								index implementation)</small> </p>
-
-					</li>
-					<li>
-						<p class="fragment">Developed in Java, so inherently cross-platform</p>
-					</li>
-					<li>
-						<p class="fragment">La primera version salio en febrero del 2010</p>
-					</li>
-					<li>
-						<p class="fragment">indice invertido</p>
-					</li>
-				</ul>
-			</section>
-
-			<section>
-				<p>Por que Elasticsearch ??? </p>
+				<h3>Que es Elasticsearch ??? </h3>
 				<img src="images/Homero-pensando.jpgw500.jpg" width="300" height="400">
 			</section>
 
 			<section>
+
+				<section>
+					<h3>Que es Elasticsearch ??? </h3>
+					<ul>
+						<li>
+							<p>Es un motor de busquedas full text y analizador de datos, open source y altamente escalable </p>
+						</li>
+						<li>
+							<p class="fragment">
+								Está construido sobre Apache Lucene
+								<small>( Lucene es el motor de busqueda full text mas popular del mercado)</small>
+							</p>
+						</li>
+						<li>
+							<p class="fragment">Desarrollado en Java</p>
+						</li>
+						<li>
+							<p class="fragment">La primera version salio en febrero del 2010</p>
+						</li>
+						<li>
+							<p class="fragment">En el fondo es un indice invertido</p>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Qué es un indice invertido ???</h3>
+					<img width="800" height="500" src="images/invertedIndex.png" alt="">
+				</section>
+
+			</section>
+
+
+			<section>
+				<h3>Por que Elasticsearch ??? </h3>
+				<img src="images/Homero-pensando.jpgw500.jpg" width="300" height="400">
+			</section>
+
+			<section>
 				<section>
 					<div>
-						<p>Porque es facil de escalar</p>
+						<h4>Porque es facil de escalar</h4>
 
 						<ul>
-							<li>
-								<small>ElasticSearch is built to scale horizontally out of the box. When ever
-									you need to increase capacity, just add more nodes, and let the
-									cluster reorganize itself to take advantage of the extra hardware.
-								</small>
-							</li>
-							<li>
-								<small> One server can hold one or more parts of one or more indexes, and
-									whenever new nodes are introduced to the cluster they are just
-									being added to the party. Every such index, or part of it, is called a
-									shard, and ElasticSearch shards can be moved around the cluster
-									very easily.
-								</small>
-							</li>
+							<p>Elasticsearch está construido para escalar facilmente.<br>
+								En el momento que se necesite mas capacidad simplemente hay que añadir un nodo más, lo demas se acomoda solo
+							</p>
+
 						</ul>
 						<img src="images/easyToScale.jpg" width="400" height="200">
 					</div>
@@ -137,19 +137,14 @@
 				</section>
 				<section>
 					<div>
-						<p>RESTful API</p>
+						<h4>RESTful API</h4>
 
 						<ul>
-							<li>
-								<small>Elasticsearch is API driven. Almost any action can be performed using a
-									simple RESTful API using JSON over HTTP. An API already exists in the language
-									of your choice.
-								</small>
-							</li>
-							<li>
-								<small> Responses are always in JSON, which is both machine and human readable.
-								</small>
-							</li>
+							Elasticsearch es API driven. Casi cualquier accion puede llevarse a cabo mediante una API RESTfull.
+							<br>
+							<br>
+							Las respuesta siempre son en formato JSON, pueden ser leidas por cualquier lenguajes de programacion y por
+							cualquier persona :)
 						</ul>
 						<img src="images/easyToScale.jpg" width="400" height="200">
 					</div>
@@ -157,30 +152,13 @@
 				</section>
 				<section>
 					<div>
-						<p>Excellent Query DSL</p>
+						<h4>Ultra manejable Query DSL</h4>
 
 						<ul>
-							<li>
-								<small>The REST API exposes a very complex and capable query DSL, that is very
-									easy to use. Every query is just a JSON object that can practically contain
-									any type of query, or even several of them combined.
-
-								</small>
-							</li>
-							<li>
-								<small> Using filtered queries, with some queries expressed as Lucene filters,
-									helps leverage caching and thus speed up common queries, or complex
-									queries with parts that can be reused.
-
-								</small>
-							</li>
-							<li>
-								<small> Faceting, another very common search feature, is just something that
-									upon-request is accompanied to search results, and then is ready for you
-
-
-								</small>
-							</li>
+							Su API REST ofrece un complejo pero versatil lenguaje para hacer consultas y facetados, es muy intuitivo y facil
+							de usar.
+							<br><br>
+							Cada consulta es simplemente un objecto JSON y puede contener cualquier tipo de consulta o varias de ellas
 						</ul>
 						<img src="images/easyToScale.jpg" width="400" height="200">
 					</div>
@@ -188,101 +166,44 @@
 				</section>
 				<section>
 					<div>
-						<p>Support for advanced search features (Full Text)</p>
+						<h4>Soporte queries avanzadas</h4>
 
 						<ul>
-							<li>
-								<small>Search comes with multi-language support, a powerful query language,
-									support for geolocation, context aware did-you-mean suggestions
-
-								</small>
-							</li>
-							<li>
-								<small> script support in filters and scorers
-
-
-								</small>
-							</li>
+							<li>Geolocalizacion</li>
+							<li>did-you-mean</li>
+							<li>ip's</li>
+							<li>funcion customizable de rankeo</li>
 						</ul>
-						<img src="images/easyToScale.jpg" width="400" height="200">
 					</div>
 
 				</section>
 				<section>
 					<div>
-						<p>Support for advanced search features (Full Text)</p>
+						<h4>Orientado a documento y scheema free</h4>
 
 						<ul>
-							<li>
-								<small>Search comes with multi-language support, a powerful query language,
-									support for geolocation, context aware did-you-mean suggestions
-
-								</small>
-							</li>
-							<li>
-								<small> script support in filters and scorers
-
-
-								</small>
-							</li>
-						</ul>
-					</div>
-					<div class="fragment">
-						<p>Document Oriented y eschema free</p>
-
-						<ul>
-							<li>
-								<small>Store complex real world entities in ElasticSearch as structured JSON
-									documents. All fields are indexed by default, and all the indices can be
-									used in a single query, to return results at breath taking speed
-
-								</small>
-							</li>
-							<li>
-								<small> script support in filters and scorers
-
-
-								</small>
-							</li>
+							No existen las transacciones, toda operacion se hace sobre documentos <br><br>
+							Docs del mismo indice no necesariamente tienen que respetar un formato
 						</ul>
 					</div>
 				</section>
 				<section>
 					<div>
-						<p>Per-operation Persistence</p>
+						<h4>Log por operacion</h4>
 
 						<ul>
-							<li>
-								<small>Elasticsearch puts your data safety first. Document changes are recorded in
-									transaction logs on multiple nodes in the cluster to minimize the chance of any
-									data loss.
-								</small>
-							</li>
+							Elasticsearch pone la informacion a salvo primeramente. <br><br>
+							Toda modificacion es persistida en un log de
+							transacciones para minimizar la posibilidad de perdida de informacion.
 						</ul>
 					</div>
-					<div class="fragment">
-						<p>Conflict management</p>
 
+				</section>
+				<section>
+					<div>
+						<h4>Comunidad activa</h4>
 						<ul>
-							<li>
-								<small>Optimistic version control can be used where needed to ensure that data is
-									never lost due to conflicting changes from multiple processes.
-
-								</small>
-							</li>
-						</ul>
-					</div>
-					<div class="fragment">
-						<p>Active community</p>
-
-						<ul>
-							<li>
-								<small>The community, other than creating nice tools and plugins, is very
-									helpful and supporting. The overall vibe is really great, and this is an
-									important metric of any OSS project.
-
-								</small>
-							</li>
+							Elastic tiene un blog, un foro de consultas y  sino <br> la solucion surgirá en algun lugar luego googlear
 						</ul>
 					</div>
 				</section>
@@ -295,27 +216,50 @@
 			</section>
 
 			<section>
-				<p>Para que Elasticsearch ??? </p>
+				<section>
+					<p>Para que Elasticsearch ??? </p>
 
-				<ul>
-					<li>
-						<p class="fragment">Logging and Log Analysis.</p>
-					</li>
-					<li>
-						<p class="fragment"> Scraping and Combining Public Data</p>
+					<ul>
+						<li>
+							<p>Full Text Search</>
+						</li>
+						<li>
+							<p class="fragment">Suggester and did you mean???</p>
+						</li>
+						<li>
+							<p class="fragment">Graph query (Cross selling)</p>
+						</li>
+						<li>
+							<p class="fragment">Obtener estadisticas sobre los documentos</p>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<p>Elastic Stack</p>
 
-					</li>
-					<li>
-						<p class="fragment">Full Text Search</p>
-					</li>
-					<li>
-						<p class="fragment">Event Data and Metrics</p>
-					</li>
-					<li>
-						<p class="fragment">Visualizing Data</p>
-					</li>
-				</ul>
+					<ul>
+						<li>
+							Elasticsearch
+						</li>
+						<li class="fragment">
+							Logstash
+						</li>
+						<li class="fragment">
+							Kibana
+						</li>
+						<li class="fragment">
+							APM
+						</li>
+						<li class="fragment">
+							Beats (FileBeats, MetricBeats, WinlogBeat, ETC)
+						</li>
+						<li class="fragment">
+							Swiftype Site Search, App Search, Elastic as SQL
+						</li>
+					</ul>
+				</section>
 			</section>
+
 
 			<section data-transition="zoom">
 				<p>Arquitectura</p>
@@ -323,267 +267,320 @@
 			</section>
 
 			<section>
-				<h2>Conceptos basicos</h2>
+				<h2>Arquitectura</h2>
 				<ul>
 					<li>
 						<p>Cluster</p>
 					</li>
 					<li>
-						<p class="fragment">Node</p>
+						<p>Node</p>
 
 					</li>
 					<li>
-						<p class="fragment">Index</p>
+						<p>Index</p>
 					</li>
 					<li>
-						<p class="fragment">Shard</p>
-					</li>
-					<li>
-						<p class="fragment">Primary Shard</p>
-					</li>
-					<li>
-						<p class="fragment">Replica Shard :</p>
-
-					</li>
-					<li>
-						<p class="fragment">Identified by index/type/id</p>
+						<p>Shard y Replicas</p>
 					</li>
 				</ul>
 			</section>
 
 			<section>
-				<h2>Index settiong</h2>
+				<h2>Arquitectura</h2>
+
+				<div class="horizontal-container">
+					<p class="vertical-top-item">Cluster: </p>
+					<p class="content text-left"> Un cluster es un conjunto de uno o más nodos que mantienen toda la información de
+						manera distribuida e
+						indexada. <br> Cada cluster está identificado por un nombre, por defecto se llaman “elasticsearch”</p>
+				</div>
+				<img src="images/emptyCluster.png" alt="">
+			</section>
+
+			<section>
+				<h2>Arquitectura</h2>
+
+				<div class="horizontal-container">
+					<p class="vertical-top-item">Nodo: </p>
+					<p class="content text-left"> Un nodo es una instancia de Elastic que forma parte de un cluster, almacena tu información y ayuda
+						con las tareas de indexación y búsqueda del cluster. <br> Los nodos están identificados por un nombre también.
+						<br>
+						Puede haber tantos nodos como quieras por cada Cluster, en caso de que no haya ningún Cluster configurado en el
+						momento de creación este lo creará y se unirá a él.</p>
+				</div>
+				<img src="images/emptyCluster.png" alt="">
+			</section>
+
+			<section>
+				<h2>Arquitectura</h2>
+
+				<div class="horizontal-container">
+					<p class="vertical-top-item">Indice: </p>
+					<p class="content text-left">Un Index es una colección de documentos que tienen características similares pero el
+						indice en si no almacena los documentos, Cada índice está compuesto por uno o más shards.</p>
+				</div>
+
+				<div class="fragment horizontal-container">
+					<p class="vertical-top-item">Sharding y Replicas: </p>
+					<p class="content text-left">Cada shard es una instancia de un índice de Lucene, que podría imaginarse como un
+						motor de búsqueda en sí mismo, que indexa y administra consultas para un subconjunto de datos en un cluster de
+						Elasticsearch.</p>
+				</div>
+			</section>
+
+			<section>
+				<h2>Arquitectura</h2>
+				<h4>shards and replicas</h4>
+
+				<img src="images/replicas2.jpg" alt="">
+			</section>
+
+			<section>
+				<h2>Hasta a K Alguna pregunta ???</h2>
+				<small>vamos a pasar a la creacion de un indice</small>
+			</section>
+
+			<section>
+				<h2>Configuracion de un indice</h2>
 				<ul>
 					<li>
-						<p>shands</p>
+						<p>Shards</p>
 					</li>
 					<li>
-						<p class="fragment">replicas</p>
+						<p class="fragment">Replicas</p>
 
 					</li>
 					<li>
-						<p class="fragment">analizer</p>
+						<p class="fragment">Analysis</p>
 					</li>
 					<li>
-						<p class="fragment">mapping</p>
+						<p class="fragment">Mapping</p>
 					</li>
 				</ul>
+			</section>
+
+			<section>
+				<h2>Analysis</h2>
+				<ul>
+					<li>Analysis es el proceso de conversión de texto, como el cuerpo de cualquier correo electrónico, en tokens o
+						términos que se agregan a el índice invertido para la búsqueda. </li>
+					<li class="fragment">Es un proceso que puede hacerse en tiempo de indexacion o de busqueda, para todos o algunos
+						campos del documento</li>
+					<li class="fragment">Elastic tiene un amplio repertorio de analizers que se adaptan a distintos contextos o
+						lenguajes</li>
+					<li class="fragment">Tambien se puede definir analizers custom o hacer una mezpla entre ellos</li>
+				</ul>
+
+			</section>
+
+			<section>
+				<h2>Anatomia de un analizer</h2>
+
+				<img src="images/analizerAnatomy.png" alt="">
+			</section>
+
+			<section>
+				<h2>Anatomia de un analizer</h2>
+				<ul>
+					<li>
+						<h4>Character filter:</h4>
+						<p>
+							Un Character filter recibe el texto original como una secuencia de caracteres y puede transformar la secuencia
+							agregando, eliminando o cambiando caracteres. Por ejemplo, un filtro de caracteres se podría usar para convertir
+							números árabe-hindúes (٠ ١٢٣٤٥٦٧٨ ٩) en sus equivalentes árabe-latinos (0123456789), o para eliminar elementos
+							HTML como de la secuencia..
+						</p>
+					</li>
+					<li>
+						<p class="fragment">No es necesario</p>
+					</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Anatomia de un analizer</h2>
+				<ul>
+					<li>
+						<h4>Tokenizer:</h4>
+						<p>Un tokenizer recibe un flujo de caracteres, lo divide en tokens individuales (generalmente palabras
+							individuales</p>
+					</li>
+
+					<li>
+						<p class="fragment">debe haber al menos un tokenizer</p>
+					</li>
+
+				</ul>
+			</section>
+
+			<section>
+				<section>
+					<h2>Analyzer in action</h2>
+
+					<div class="horizontal-container">
+						<img src="images/spanishAnalizers.png" alt="">
+
+						<div class="vertical-container testinganalizres">
+							<img src="images/testing analizres.png" alt="">
+							<img src="images/tokens.png" alt="">
+						</div>
+
+					</div>
+
+				</section>
+				<section>
+					<h2>Analyzer in action</h2>
+					<div class="horizontal-container">
+						<img src="images/stopwords.png" alt="">
+						<img width="400" height="200" class="secondImage" src="images/stemming.png" alt="">
+					</div>
+				</section>
+			</section>
+
+			<section>
+				<h2>Autocomplete Tokenizer</h2>
+
+				<div class="horizontal-container">
+					<img src="images/ngrantokenizerMapping.jpg" alt="">
+
+					<div class="vertical-container testinganalizres">
+						<img src="images/ngramTokenizerUse.jpg" alt="">
+						<img src="images/ngramTokenizerResult.jpg" alt="">
+					</div>
+
+				</div>
 			</section>
 
 			<section>
 				<h2>Mapping</h2>
-				<p>Mapping is the process of defining how a document, and the fields it contains, are stored and indexed. For
-					instance, use mappings to define:</p>
-				<p class="fragment">
-					which string fields should be treated as full text fields.
-					which fields contain numbers, dates, or geolocations.
-					whether the values of all fields in the document should be indexed into the catch-all _all field.
-					the format of date values.
-					custom rules to control the mapping for dynamically added fields.
-				</p>
-			</section>
-
-			<section>
-				<h2>Mapping</h2>
-				<p>Fields datatype </p>
-				<p class="fragment">
-					a simple type like text, keyword, date, long, double, boolean or ip.
-					a type which supports the hierarchical nature of JSON such as object or nested.
-					or a specialised type like geo_point, geo_shape, or completion.
-				</p>
-				<p class="fragment"> Dynamic mapping </p>
-				<p class="fragment"> No puede ser modificado luego de ser creado </p>
-
-			</section>
-
-
-			<section>
-				<h2>Analizer</h2>
-				<p>Mapping is the process of defining how a document, and the fields it contains, are stored and indexed. For
-					instance, use mappings to define:</p>
-				<p class="fragment">
-					which string fields should be treated as full text fields.
-					which fields contain numbers, dates, or geolocations.
-					whether the values of all fields in the document should be indexed into the catch-all _all field.
-					the format of date values.
-					custom rules to control the mapping for dynamically added fields.
-				</p>
-			</section>
-
-			<section>
-				<h2>Configuring ANALIZERS</h2>
-				<p class="fragment">
-					• Analyzing data
-					• SE PRODUCE lo sgte
-					• Tokenizing
-					• Stemming
-					• Filtering
-				</p>
-			</section>
-
-
-			<section>
-				<h2>WHAT IS A SEARCH ENGINE?</h2>
+				<p>El mapeo es el proceso de definir cómo un documento, y los campos que contiene, se almacenan e indexan </p>
+				<p class="fragment">Por ejemplo:</p>
 				<ul>
-					<li>
-						<p class="fragment">• Efficient indexing of data
-							• On all fields / combination of fields
-							• Analyzing data
-							• Text Search
-							• Tokenizing
-							• Stemming
-							• Filtering
-							• Understanding locations
-							• Date parsing
-							• Relevance scoring</p>
-					</li>
+					<li class="fragment">que campos deberían ser tratado como full text searcheables (string)</li>
+					<li class="fragment">que campos contienen numeros, fechas, booleans</li>
+					<li class="fragment">definir tipos de datos especiales para tratar datos como geolocalizacion, direcciones ip,
+						percolators</li>
+					<li class="fragment">definir si es un campo debe ser indexado o no procesado</li>
 				</ul>
 			</section>
 
-
 			<section>
-				<h2>TOKENIZING</h2>
-				<p>
-					Finding word boundaries
-					• Not just explode(„ „, $text);
-					• Chinese has no spaces. (Not every single character is a
-					word.)
-					• Understand patterns:
-					• URLs
-					• Emails
-					• #hashtags
-					• Twitter @mentions
-					• Currencies (EUR, €, ...) </p>
-			</section>
+				<section>
+					<h2>Mapping</h2>
+					<ul>
+						<li class="fragment">reglas para mapping dinamico</li>
+						<li class="fragment">definir analyzers especificos para determinados campos</li>
+						<li class="fragment">el tipo de dato de un campo no puede ser modificado luego de ser creado, sino hay que
+							reindexar</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Ejemplo de mapping</h2>
+					<img src="images/ejemploMappingMio.jpg" alt="">
+				</section>
 
-
-
-			<section>
-				<h2>STEMMING</h2>
-				<p>
-					• “Stemming is the process for reducing inflected (or sometimes
-					derived) words to their stem, base or root form.”
-					• Conjugations
-					• Plurals
-					• Example:
-					• Fishing, Fished, Fish, Fisher > Fish
-					• Better > Good
-					• Several ways to find the stem:
-					• Lookup tables
-					• Suffix-stripping
-					• Lemmatization
-					•...
-					• Different stemmers for every language.</p>
 			</section>
 
 			<section>
-				<h2>FILTERING</h2>
-				<p>
-					• Remove stop words
-					• Different for every language
-					• HTML
-					• If you‟re indexing web content, not every character is
-					meaningful.</p>
-			</section>
-
-
-			<section id="transitions">
 				<h2>Querys</h2>
 			</section>
 
-			<section id="transitions">
-				<h2>Facets</h2>
-
-				Instead of returning the matching documents ...
-				• ... return data about the distribution of values in the set of
-				matching documents
-				• Or a subset of the matching documents
-				• Possibilities:
-				• Totals per unique value
-				• Averages of values
-				• Distributions of values
-			</section>
-
-			<section id="transitions">
-				<h2>DEMO INDEX</h2>
-
-				Create Index
-				............................................................................................................................................
-				8
-				Create Mapping and Add data
-				................................................................................................................. 8
-				Field Data Types
-				....................................................................................................................................
-				59
-				Mapping Types
-				......................................................................................................................................
-				61
-				Dynamic Mapping
-				.................................................................................................................................
-				61
-				Mapping Parameters
-				.............................................................................................................................
-				62
-
-				Create Index
-				..........................................................................................................................................
-				39
-				Delete Index
-				..........................................................................................................................................
-				41
-				Get Index
-				..............................................................................................................................................
-				41
-				Index Exist
-				.............................................................................................................................................
-				41
-				Open / Close Index API
-				..........................................................................................................................
-				42
-				Index Aliases
-				.........................................................................................................................................
-				42
-				Index
-				Settings........................................................................................................................................
-				43
-				Analyze
-				.................................................................................................................................................
-				43
-				Index Templates
-				....................................................................................................................................
-				44
+			<section>
+				<h2>Querys</h2>
+				<ul>
+					<li>
+						<h3>Full Text Queries</h3>
+					</li>
+					<li>
+						<p class="fragment">match query</p>
+					</li>
+					<li>
+						<p class="fragment">match_phrase query</p>
+					</li>
+					<li>
+						<p class="fragment">multi_match query</p>
+					</li>
+					<li>
+						<p class="fragment">query_string query</p>
+					</li>
+				</ul>
 			</section>
 
 			<section>
-				<h2>Few interesting Features</h2>
-				• Bulk Indexing
-				– Send multiple docs to ES
-				• Multi Get APIs
-				– Get multiple documents in a single API
-				• Percolator
-				– The idea is to have ES to notify your application when new content matches your filters
-				instead of having to constantly poll the search engine to check for new updates. Great
-				for building alerts
-				• Pagination
-				• Highlighting
+				<h2>Querys</h2>
+				<ul>
+					<li>
+						<h3>Term Queries</h3>
+					</li>
+					<li>
+						<h3>Range Queries</h3>
+					</li>
+				</ul>
 			</section>
 
 			<section>
-				<h2>References</h2>
+				<h2>Querys Compuestas</h2>
+				<ul>
+					<li>
+						<p>contant_score query</p>
+					</li>
+					<li>
+						<p class="fragment">bool query</p>
+					</li>
+					<li>
+						<p class="fragment">dis_max query</p>
+					</li>
+					<li>
+						<p class="fragment">function_score query</p>
+					</li>
+				</ul>
+			</section>
 
-				•
-				•
-				•
-				•
-				https://www.youtube.com/watch?v=5444z-L2V2A&spfreload=1 - “Lucene now
-				and then” from Lucene creator Doug Cutting @ twitter, Gives history and how
-				lucene evolved.
-				https://www.youtube.com/watch?v=lpZ6ZajygDY - from elastic search creator
-				Shay Benon (Its 3 years old, but its very good content on data design patterns)
-				https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html -
-				Official documentation from elasticsearch
-				https://www.manning.com/books/elasticsearch-in-action - From this place
-				diagrams were picked in this presentation
+			<section>
+				<h3>Querys Flasheras</h3>
+				<ul>
+					<li>
+						<p>Joinning query</p>
+					</li>
+					<li>
+						<p class="fragment">geo query</p>
+					</li>
+					<li>
+						<p class="fragment">specialiez query</p>
+					</li>
+					<li>
+						<p class="fragment">span query</p>
+					</li>
+				</ul>
+			</section>
+
+			<section>
+				<h3>Facetado</h3>
+				<ul class="text-center">
+					En vez de retornar los documentos matcheados... <br>
+					Se puede devolver informacion sobre la distribucion de los mismos <br><br>
+					Totales <br>
+					Promedios <br>
+					Distribuciones
+				</ul>
+			</section>
+
+			<section>
+				<h2>Facetado</h2>
+
+				<ul>
+					<li>Max, min , count, avg, top hits</li>
+					<br>
+					 <li class="fragment">HISTOGRAMAS (Intervalos) </li>
+					 <br>
+					<li class="fragment">Geo Bounds, Geo centroid, Geo distance, Ip range</li>
+				</ul>
+
+			</section>
+
+
+			<section>
+				<h2>Vamos a la demo</h2>
 			</section>
 		</div>
 
